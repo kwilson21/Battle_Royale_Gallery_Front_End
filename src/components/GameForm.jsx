@@ -26,7 +26,8 @@ const platform = [
   { key: "l", text: "Linux", value: "Linux" },
   { key: "a", text: "Android", value: "Android" },
   { key: "i", text: "iOS", value: "iOS" },
-  { key: "m", text: "macOS", value: "macOS" }
+  { key: "m", text: "macOS", value: "macOS" },
+  { key: "n", text: "Nintendo Switch", value: "Nintendo Switch" }
 ];
 
 class GameForm extends Component {
