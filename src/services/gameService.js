@@ -5,7 +5,7 @@ import { querystring } from "querystring";
 import jsonToFormData from "json-form-data";
 import _ from "lodash";
 
-const apiEndpoint = apiUrl + "/games/";
+const apiEndpoint = "/games/";
 
 function gameUrl(id) {
   return `${apiEndpoint}${id}`;
