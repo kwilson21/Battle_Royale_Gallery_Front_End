@@ -8,7 +8,10 @@ import {
   Grid,
   Button,
   Icon,
-  Divider
+  Divider,
+  Dimmer,
+  Loader,
+  Image
 } from "semantic-ui-react";
 import { getAllGames } from "../services/gameService";
 import _ from "lodash";
@@ -26,8 +29,14 @@ class Games extends Component {
     style: { show: false, asc: true }
   };
 
+  gamesInDb = true;
+
   async componentDidMount() {
     const { data } = await getAllGames();
+
+    if (!data) {
+      this.gamesInDb = false;
+    }
 
     this.setState({
       games: _.reverse(_.sortBy(data, "name", "desc"))
@@ -195,8 +204,21 @@ class Games extends Component {
                 />
               ))}
             </Grid>
-          ) : this.state.games.length === 0 ? (
+          ) : !this.gamesInDb ? (
             <h1>There are no games in database</h1>
+          ) : this.state.games.length === 0 ? (
+            <React.Fragment>
+              <Dimmer active>
+                <Loader
+                  style={{ paddingBottom: 500 }}
+                  size="massive"
+                  indeterminate
+                >
+                  Loading games...
+                </Loader>
+                
+              </Dimmer>
+            </React.Fragment>
           ) : (
             <Grid
               textAlign="left"
