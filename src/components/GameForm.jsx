@@ -35,7 +35,10 @@ class GameForm extends Component {
     super(props);
 
     if (props.location.game) {
-      this.state = { game: props.location.game };
+      const game = props.location.game;
+      game.image = { data: undefined, contentType: "" };
+
+      this.state = { game };
     } else {
       this.state = {
         errors: {},

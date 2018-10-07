@@ -297,6 +297,9 @@ class Games extends Component {
                         if (p === "iOS" || p === "macOS") {
                           return <Icon name="apple" />;
                         }
+                        if (p === "Nintendo Switch") {
+                          return <Icon name="nintendo" />;
+                        }
                       })
                     : "TBD"}
                 </Grid.Column>

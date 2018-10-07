@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import arrayBufferToBase64 from "../utilities/imgDecoder";
 
 class GameCard extends Component {
-  state = {};
+  state = {
+    img: null
+  };
 
-  componentDidMount() {
-    if (this.props.gameImg !== null) {
-      let base64Flag = "data:" + this.props.gameImgType + ";base64,";
-      let imageStr = arrayBufferToBase64(this.props.gameImg.data);
 
-      this.setState({
-        img: base64Flag + imageStr
-      });
+  static getDerivedStateFromProps(props, state) {
+    if (props.gameImg !== null) {
+      let base64Flag = "data:" + props.gameImgType + ";base64,";
+      let imageStr = arrayBufferToBase64(props.gameImg.data);
+
+      return { img: base64Flag + imageStr };
     }
   }
 
