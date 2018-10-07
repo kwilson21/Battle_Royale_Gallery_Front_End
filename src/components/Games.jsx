@@ -209,8 +209,8 @@ class Games extends Component {
                   likes={game.rating.likecount}
                   dislikes={game.rating.dislikecount}
                   gameId={game._id}
-                  gameImg={game.image.data}
-                  gameImgType={game.image.contentType}
+                  gameImg={game.image ? game.image.data : null}
+                  gameImgType={game.img ? game.image.contentType : null}
                 />
               ))}
             </Grid>
