@@ -23,7 +23,7 @@ class Games extends Component {
   state = {
     games: [],
     query: undefined,
-    pageSize: 5,
+    pageSize: 10,
     activePage: 1,
     newPage: false,
 
