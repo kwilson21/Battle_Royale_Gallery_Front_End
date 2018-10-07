@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Component } from "react";
-import { Button, ButtonProps, Label } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import * as uuid from "uuid";
 
 export class FileButton extends Component {

@@ -107,6 +107,7 @@ class GameForm extends Component {
           game.genre.style = value;
           this.setState({ game });
           break;
+        default:
       }
     }
   };

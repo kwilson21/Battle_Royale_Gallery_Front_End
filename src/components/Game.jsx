@@ -5,7 +5,6 @@ import {
   Image,
   Card,
   Label,
-  Input,
   Container,
   Header,
   Grid,
@@ -209,7 +208,7 @@ class Games extends Component {
           </Container>
         </Segment>
         <Segment vertical secondary>
-          <Grid centered>
+          <Grid centered container>
             <Grid.Column width="12">
               <Card centered raised>
                 <Image src={this.state.img} />
@@ -260,10 +259,12 @@ class Games extends Component {
                     ? this.state.game.genre.style.map(s => {
                         if (s === "Shooter") {
                           return <Icon name="crosshairs" />;
-                        }
-                        if (s === "Melee") {
+                        } else if (s === "Melee") {
                           return <Icon name="hand rock" />;
+                        } else {
+                          return null;
                         }
+                        
                       })
                     : "TBD"}
                 </Grid.Column>
@@ -281,24 +282,26 @@ class Games extends Component {
                     ? this.state.game.platform.map(p => {
                         if (p === "Playstation") {
                           return <Icon name="playstation" />;
-                        }
+                        } else
                         if (p === "Xbox") {
                           return <Icon name="xbox" />;
-                        }
+                        } else
                         if (p === "Windows") {
                           return <Icon name="windows" />;
-                        }
+                        } else
                         if (p === "Linux") {
                           return <Icon name="linux" />;
-                        }
+                        } else
                         if (p === "Android") {
                           return <Icon name="android" />;
-                        }
+                        } else
                         if (p === "iOS" || p === "macOS") {
                           return <Icon name="apple" />;
-                        }
+                        } else
                         if (p === "Nintendo Switch") {
                           return <Icon name="nintendo" />;
+                        } else {
+                          return null;
                         }
                       })
                     : "TBD"}

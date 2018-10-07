@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import arrayBufferToBase64 from "../utilities/imgDecoder";
 
 class GameCard extends Component {
-  
   state = {
     img: null
   };
@@ -24,10 +23,10 @@ class GameCard extends Component {
         width="5"
         style={{
           minWidth: "367px",
-          paddingLeft: "100px",
-          paddingRight: "100px",
-          marginLeft: "-90px",
-          marginRight: "-90px"
+          paddingRight: '75px',
+          paddingLeft: '75px',
+          marginLeft: "-60px",
+          marginRight: "-60px"
         }}
       >
         <Card

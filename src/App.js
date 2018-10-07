@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Redirect, Switch, withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import GameForm from "./components/GameForm";
@@ -23,9 +23,8 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path="/not-found" component={NotFound} />
-          <main className="main-container">
-            <Route component={MainLayout} />
-          </main>
+
+          <Route component={MainLayout} />
         </Switch>
       </React.Fragment>
     );

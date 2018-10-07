@@ -4,11 +4,9 @@ import {
   Menu,
   Icon,
   Segment,
-  Header,
   Breadcrumb
 } from "semantic-ui-react";
 import { Link, NavLink } from "react-router-dom";
-import BreadCrumb from "./BreadCrumb";
 import { logout } from "../services/authService";
 
 export default class NavBar extends Component {
@@ -24,6 +22,7 @@ export default class NavBar extends Component {
       if (i + 1 === this.props.nav.length) {
         content.push(
           <Breadcrumb.Section
+          key={i}
             as={NavLink}
             onClick={() => this.props.rollBackNavBar(i)}
             to={this.props.nav[i][0]}
@@ -48,7 +47,7 @@ export default class NavBar extends Component {
     }
     return (
       <Segment vertical basic secondary>
-        <Menu secondary borderless>
+        <Menu secondary pointing borderless>
           <Menu.Item>
             <Breadcrumb size="large">
               <Icon color="blue" name="home" />

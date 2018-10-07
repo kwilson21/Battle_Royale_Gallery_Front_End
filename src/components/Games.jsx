@@ -8,10 +8,8 @@ import {
   Grid,
   Button,
   Icon,
-  Divider,
   Dimmer,
   Loader,
-  Image,
   Pagination
 } from "semantic-ui-react";
 import { getAllGames } from "../services/gameService";
@@ -93,6 +91,7 @@ class Games extends Component {
         unsortedGames.price.show = true;
         unsortedGames.style.show = false;
         break;
+      default:
     }
 
     if (ascOrder) {
@@ -142,8 +141,6 @@ class Games extends Component {
       this.state.activePage,
       this.state.pageSize
     );
-
-    console.log(this.state.activePage);
 
     return (
       <React.Fragment>
@@ -254,6 +251,7 @@ class Games extends Component {
             >
               {games.map(game => (
                 <GameCard
+                  key={game._id}
                   addToNavBar={this.props.addToNavBar}
                   name={game.name}
                   likes={game.rating.likecount}
@@ -265,7 +263,7 @@ class Games extends Component {
               ))}
             </Grid>
           )}
-          <Grid centered>
+          <Grid container centered>
             <Pagination
               style={{ marginBottom: 30, marginTop: 15 }}
               activePage={this.state.activePage}

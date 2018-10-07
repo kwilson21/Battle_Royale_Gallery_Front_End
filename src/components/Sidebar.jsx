@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Label, Menu, Icon } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class MenuExampleSizeVerticalLarge extends Component {
@@ -23,16 +23,18 @@ export default class MenuExampleSizeVerticalLarge extends Component {
           left: "0px",
           width: "250px",
           background: "rgb(27, 28, 29)",
-          overflowX: "hidden",
-          overflowY: "auto"
+          overflowX: "hidden"
         }}
       >
         <Menu
           size="large"
+          borderless
+          compact
+          fluid
           stackable
           vertical
           inverted
-          style={{ flex: "1 1 0%" }}
+          style={{ display: "flex", flexDirection: "column", flex: "1" }}
         >
           <Menu.Item as="a" href="/">
             <Icon

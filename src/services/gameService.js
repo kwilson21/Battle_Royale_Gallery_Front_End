@@ -1,9 +1,5 @@
 import http from "./httpService";
-import { apiUrl } from "../config.json";
-
-import { querystring } from "querystring";
 import jsonToFormData from "json-form-data";
-import _ from "lodash";
 
 const apiEndpoint = "/games/";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Grid, Segment } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 
 const NotFound = () => {
   return (
