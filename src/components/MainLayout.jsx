@@ -9,6 +9,7 @@ import Game from "./Game";
 import Me from "./Me";
 import SideBar from "./Sidebar";
 import NavBar from "./NavBar";
+import Footer from "./Footer";
 
 class MainLayout extends Component {
   constructor() {
@@ -72,6 +73,7 @@ class MainLayout extends Component {
 
             <Redirect to="/not-found" />
           </Switch>
+          <Footer />
         </div>
       </React.Fragment>
     );

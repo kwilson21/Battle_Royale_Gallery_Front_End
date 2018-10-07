@@ -11,18 +11,23 @@ import {
   Divider,
   Dimmer,
   Loader,
-  Image
+  Image,
+  Pagination
 } from "semantic-ui-react";
 import { getAllGames } from "../services/gameService";
 import _ from "lodash";
 import { Link } from "react-router-dom";
+import { paginate } from "./../utilities/paginate";
 
 class Games extends Component {
   state = {
     games: [],
     query: undefined,
+    pageSize: 5,
+    activePage: 1,
+    newPage: false,
 
-    name: { show: true, asc: false },
+    name: { show: true, asc: true },
     releasedate: { show: false, asc: true },
     rating: { show: false, asc: true },
     price: { show: false, asc: true },
@@ -39,7 +44,7 @@ class Games extends Component {
     }
 
     this.setState({
-      games: _.reverse(_.sortBy(data, "name", "desc"))
+      games: _.sortBy(data, "name", "asc")
     });
   }
 
@@ -115,7 +120,31 @@ class Games extends Component {
     this.setState({ games: [game] });
   };
 
+  handlePageChange = (event, { activePage }) => {
+    if (activePage !== this.state.activePage) {
+      this.setState({ activePage, newPage: true });
+    }
+  };
+
   render() {
+    let gamesQuery;
+
+    if (this.state.query) {
+      gamesQuery = paginate(
+        this.state.query,
+        this.state.activePage,
+        this.state.pageSize
+      );
+    }
+
+    const games = paginate(
+      this.state.games,
+      this.state.activePage,
+      this.state.pageSize
+    );
+
+    console.log(this.state.activePage);
+
     return (
       <React.Fragment>
         <Segment padded secondary vertical>
@@ -192,7 +221,7 @@ class Games extends Component {
               textAlign="left"
               style={{ marginLeft: "50px", marginRight: "25px" }}
             >
-              {this.state.query.map(game => (
+              {gamesQuery.map(game => (
                 <GameCard
                   addToNavBar={this.props.addToNavBar}
                   name={game.name}
@@ -216,7 +245,6 @@ class Games extends Component {
                 >
                   Loading games...
                 </Loader>
-                
               </Dimmer>
             </React.Fragment>
           ) : (
@@ -224,7 +252,7 @@ class Games extends Component {
               textAlign="left"
               style={{ marginLeft: "50px", marginRight: "25px" }}
             >
-              {this.state.games.map(game => (
+              {games.map(game => (
                 <GameCard
                   addToNavBar={this.props.addToNavBar}
                   name={game.name}
@@ -237,6 +265,30 @@ class Games extends Component {
               ))}
             </Grid>
           )}
+          <Grid centered>
+            <Pagination
+              style={{ marginBottom: 30, marginTop: 15 }}
+              activePage={this.state.activePage}
+              onPageChange={this.handlePageChange}
+              ellipsisItem={{
+                content: <Icon name="ellipsis horizontal" />,
+                icon: true
+              }}
+              firstItem={{
+                content: <Icon name="angle double left" />,
+                icon: true
+              }}
+              lastItem={{
+                content: <Icon name="angle double right" />,
+                icon: true
+              }}
+              prevItem={{ content: <Icon name="angle left" />, icon: true }}
+              nextItem={{ content: <Icon name="angle right" />, icon: true }}
+              totalPages={Math.ceil(
+                this.state.games.length / this.state.pageSize
+              )}
+            />
+          </Grid>
         </Segment>
       </React.Fragment>
     );

@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import arrayBufferToBase64 from "../utilities/imgDecoder";
 
 class GameCard extends Component {
+  
   state = {
     img: null
   };
-
 
   static getDerivedStateFromProps(props, state) {
     if (props.gameImg !== null) {
