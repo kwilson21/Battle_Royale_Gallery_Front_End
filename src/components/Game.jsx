@@ -251,7 +251,7 @@ class Games extends Component {
                 <Grid.Column
                   width="2"
                   style={{
-                    marginRight: "-80px"
+                    marginRight: "-50px"
                   }}
                 >
                   <Header as="h3">Style</Header>
@@ -264,7 +264,6 @@ class Games extends Component {
                         } else {
                           return null;
                         }
-                        
                       })
                     : "TBD"}
                 </Grid.Column>
@@ -282,23 +281,17 @@ class Games extends Component {
                     ? this.state.game.platform.map(p => {
                         if (p === "Playstation") {
                           return <Icon name="playstation" />;
-                        } else
-                        if (p === "Xbox") {
+                        } else if (p === "Xbox") {
                           return <Icon name="xbox" />;
-                        } else
-                        if (p === "Windows") {
+                        } else if (p === "Windows") {
                           return <Icon name="windows" />;
-                        } else
-                        if (p === "Linux") {
+                        } else if (p === "Linux") {
                           return <Icon name="linux" />;
-                        } else
-                        if (p === "Android") {
+                        } else if (p === "Android") {
                           return <Icon name="android" />;
-                        } else
-                        if (p === "iOS" || p === "macOS") {
+                        } else if (p === "iOS" || p === "macOS") {
                           return <Icon name="apple" />;
-                        } else
-                        if (p === "Nintendo Switch") {
+                        } else if (p === "Nintendo Switch") {
                           return <Icon name="nintendo" />;
                         } else {
                           return null;
