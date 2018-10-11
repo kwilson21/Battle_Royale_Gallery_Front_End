@@ -214,6 +214,7 @@ class Games extends Component {
         </Segment>
         <Segment style={{ minHeight: "100vh" }} vertical secondary>
           {this.state.query ? (
+            <React.Fragment>
             <Grid
               textAlign="left"
               style={{ marginLeft: "50px", marginRight: "25px" }}
@@ -230,40 +231,7 @@ class Games extends Component {
                 />
               ))}
             </Grid>
-          ) : !this.gamesInDb ? (
-            <h1>There are no games in database</h1>
-          ) : this.state.games.length === 0 ? (
-            <React.Fragment>
-              <Dimmer active>
-                <Loader
-                  style={{ paddingBottom: 500 }}
-                  size="massive"
-                  indeterminate
-                >
-                  Loading games...
-                </Loader>
-              </Dimmer>
-            </React.Fragment>
-          ) : (
-            <Grid
-              textAlign="left"
-              style={{ marginLeft: "50px", marginRight: "25px" }}
-            >
-              {games.map(game => (
-                <GameCard
-                  key={game._id}
-                  addToNavBar={this.props.addToNavBar}
-                  name={game.name}
-                  likes={game.rating.likecount}
-                  dislikes={game.rating.dislikecount}
-                  gameId={game._id}
-                  gameImg={game.image ? game.image.data : null}
-                  gameImgType={game.img ? game.image.contentType : null}
-                />
-              ))}
-            </Grid>
-          )}
-          <Grid container centered>
+            <Grid container centered>
             <Pagination
               style={{ marginBottom: 30, marginTop: 15 }}
               activePage={this.state.activePage}
@@ -287,6 +255,67 @@ class Games extends Component {
               )}
             />
           </Grid>
+          </React.Fragment>
+          ) : !this.gamesInDb ? (
+            <h1>There are no games in database</h1>
+          ) : this.state.games.length === 0 ? (
+            <React.Fragment>
+              <Dimmer active>
+                <Loader
+                  style={{ paddingBottom: 500 }}
+                  size="massive"
+                  indeterminate
+                >
+                  Loading games...
+                </Loader>
+              </Dimmer>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+            <Grid
+              textAlign="left"
+              style={{ marginLeft: "50px", marginRight: "25px" }}
+            >
+              {games.map(game => (
+                <GameCard
+                  key={game._id}
+                  addToNavBar={this.props.addToNavBar}
+                  name={game.name}
+                  likes={game.rating.likecount}
+                  dislikes={game.rating.dislikecount}
+                  gameId={game._id}
+                  gameImg={game.image ? game.image.data : null}
+                  gameImgType={game.img ? game.image.contentType : null}
+                />
+              ))}
+            </Grid>
+            <Grid container centered>
+            <Pagination
+              style={{ marginBottom: 30, marginTop: 15 }}
+              activePage={this.state.activePage}
+              onPageChange={this.handlePageChange}
+              ellipsisItem={{
+                content: <Icon name="ellipsis horizontal" />,
+                icon: true
+              }}
+              firstItem={{
+                content: <Icon name="angle double left" />,
+                icon: true
+              }}
+              lastItem={{
+                content: <Icon name="angle double right" />,
+                icon: true
+              }}
+              prevItem={{ content: <Icon name="angle left" />, icon: true }}
+              nextItem={{ content: <Icon name="angle right" />, icon: true }}
+              totalPages={Math.ceil(
+                this.state.games.length / this.state.pageSize
+              )}
+            />
+          </Grid>
+          </React.Fragment>
+          )}
+          
         </Segment>
       </React.Fragment>
     );
